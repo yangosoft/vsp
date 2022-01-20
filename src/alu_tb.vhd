@@ -108,7 +108,21 @@ BEGIN
       A <= x"FF";
       B <= x"FF";
       wait for 1 us;
-
+      -- TEST OR
+      operation <= x"02";
+      A <= x"FF";
+      B <= x"00";
+      wait for 1 us;
+      A <= x"00";
+      B <= x"01";
+     -- TEST SUB
+     operation <= x"03";
+     for i in 7 downto 0 
+     loop
+        A <= std_logic_vector(to_unsigned(i,8)); 
+        B <= std_logic_vector(to_unsigned(7-i,8)); 
+           wait for 1 us;
+      end loop;
 
       wait;
    end process;
