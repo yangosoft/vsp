@@ -7,7 +7,8 @@ entity ALU is
         ARITHMETIC_OPERATION_ADD: std_logic_vector(7 downto 0) := x"00";
         ARITHMETIC_OPERATION_AND: std_logic_vector(7 downto 0) := x"01";
         ARITHMETIC_OPERATION_OR: std_logic_vector(7 downto 0)  := x"02";
-        ARITHMETIC_OPERATION_SUB: std_logic_vector(7 downto 0) := x"03"
+        ARITHMETIC_OPERATION_SUB: std_logic_vector(7 downto 0) := x"03";
+        ARITHMETIC_OPERATION_LFS: std_logic_vector(7 downto 0) := x"04"
         --ARITHMETIC_OPERATION_ADD: unsigned(7 downto 0) := x"00";
         --ARITHMETIC_OPERATION_AND: unsigned(7 downto 0) := x"01"
         );
@@ -55,13 +56,18 @@ begin
                 ovf <= '1' when temp > 255 else '0';
             elsif operation = ARITHMETIC_OPERATION_SUB then
                 temp := resize(unsigned(A), temp'length) - unsigned(B);
+                z <= '1' when temp = 0 else '0';
                 dataOut <= std_logic_vector(resize(temp,8));
             elsif operation = ARITHMETIC_OPERATION_AND then
                 dataOut <= A and B;
-                z <= '0';
+                --z <= '1' when temp = 0 else '0';
                 ovf <= '0';
             elsif operation = ARITHMETIC_OPERATION_OR then
                 dataOut <= A or B;
+                z <= '0';
+                ovf <= '0'; 
+            elsif operation = ARITHMETIC_OPERATION_LFS then
+                dataOut <= std_logic_vector( shift_left(signed(A), 1) );
                 z <= '0';
                 ovf <= '0'; 
             else
