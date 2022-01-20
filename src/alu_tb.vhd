@@ -17,6 +17,7 @@ ARCHITECTURE behavior OF ALU_tb IS
         port (
             
             operation : in std_logic_vector (7 downto 0);
+            cmp_alu : in std_logic;
             A : in std_logic_vector (7 downto 0);
             B : in std_logic_vector (7 downto 0);
             clk: in STD_LOGIC;
@@ -41,6 +42,8 @@ ARCHITECTURE behavior OF ALU_tb IS
    signal z:     STD_LOGIC;    
    signal ovf:    STD_LOGIC;
 
+   signal cmp_alu :  std_logic;
+
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
  
@@ -56,7 +59,8 @@ BEGIN
           z => z,
           ovf => ovf,
           clk => clk,
-          operation => operation
+          operation => operation,
+          cmp_alu => cmp_alu
         );
 
    -- Clock process definitions
@@ -79,9 +83,10 @@ BEGIN
 
       -- insert stimulus here 
       operation <= x"00";
-		for i in 7 downto 0 loop
+      cmp_alu <= '0';
+		for i in 10 downto 0 loop
            A <= std_logic_vector(to_unsigned(i,8)); 
-           B <= std_logic_vector(to_unsigned(7-i,8)); 
+           B <= std_logic_vector(to_unsigned(10-i,8)); 
 			  wait for 1 us;
       end loop;
       wait for 1 us;
@@ -115,6 +120,7 @@ BEGIN
       wait for 1 us;
       A <= x"00";
       B <= x"01";
+      wait for 1 us;
      -- TEST SUB
      operation <= x"03";
      for i in 7 downto 0 
@@ -124,6 +130,32 @@ BEGIN
            wait for 1 us;
       end loop;
 
+      -- TEST SHL
+      operation <= x"04";
+      A <= x"01";
+      B <= x"01";
+      wait for 1 us;
+
+      -- TEST NOT
+      operation <= x"05";
+      A <= x"FF";
+      B <= x"05";
+      wait for 1 us;
+
+      -- TEST SHA
+      operation <= x"06";
+      A <= x"01";
+      B <= x"01";
+      wait for 1 us;
+
+      -- TEST XOR
+      operation <= x"07";
+      A <= x"FF";
+      B <= x"FF";
+      wait for 1 us;
+
+      cmp_alu <= '1';
+      wait for 1 us;
       wait;
    end process;
 
