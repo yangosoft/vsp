@@ -6,6 +6,9 @@ Will be tested in a Spartan 3S500E
 
 ## Build instructions
 
+Requires [https://github.com/ghdl/ghdl] and [http://gtkwave.sourceforge.net/] to build and simulate.
+
+
 ```
 cd src
 ./simulate.sh
