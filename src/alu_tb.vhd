@@ -15,13 +15,11 @@ ARCHITECTURE behavior OF ALU_tb IS
 
     COMPONENT ALU is
         port (
-            
             operation : in std_logic_vector (7 downto 0);
             cmp_alu : in std_logic;
             A : in std_logic_vector (7 downto 0);
             B : in std_logic_vector (7 downto 0);
-            clk: in STD_LOGIC;
-            dataOut : out std_logic_vector (7 downto 0);
+            W : out std_logic_vector (15 downto 0);
             z:     out STD_LOGIC;    
             ovf:   out STD_LOGIC
         );
@@ -33,11 +31,10 @@ ARCHITECTURE behavior OF ALU_tb IS
    signal B : std_logic_vector(7 downto 0);
 
  	--Outputs
-   signal dataOut : std_logic_vector(7 downto 0);
+   signal W : std_logic_vector(15 downto 0);
 
 
    signal operation : std_logic_vector (7 downto 0);
-   signal   clk:  STD_LOGIC;
    
    signal z:     STD_LOGIC;    
    signal ovf:    STD_LOGIC;
@@ -55,10 +52,9 @@ BEGIN
    uut: ALU PORT MAP (
           A => A,
           B => B,
-          dataOut => dataOut,
+          W => W,
           z => z,
           ovf => ovf,
-          clk => clk,
           operation => operation,
           cmp_alu => cmp_alu
         );
@@ -154,7 +150,28 @@ BEGIN
       B <= x"FF";
       wait for 1 us;
 
+      -- TEST COMPARATOP
       cmp_alu <= '1';
+      A <= x"01";
+      B <= x"FF";
+
+      -- CMP_OPERATION_LT
+      operation <= x"00";
+      wait for 1 us;
+      -- CMP_OPERATION_LE
+      operation <= x"01";
+      B <= x"01";
+      wait for 1 us;
+      -- CMP_OPERATION_EQ
+      operation <= x"03";
+      B <= x"FF";
+      wait for 1 us;
+      -- CMP_OPERATION_LTU
+      operation <= x"04";
+      B <= x"FF";
+      wait for 1 us;
+      -- CMP_OPERATION_LEU
+      operation <= x"05";
       wait for 1 us;
       wait;
    end process;
