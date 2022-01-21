@@ -173,6 +173,13 @@ BEGIN
       -- CMP_OPERATION_LEU
       operation <= x"05";
       wait for 1 us;
+      -- MOVI
+      operation <= x"08";
+      wait for 1 us;
+      -- MOVI
+      operation <= x"09";
+      wait for 1 us;
+
       wait;
    end process;
 

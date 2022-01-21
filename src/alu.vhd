@@ -16,7 +16,9 @@ entity ALU is
         CMP_OPERATION_LE:           std_logic_vector(7 downto 0) := x"01";
         CMP_OPERATION_EQ:           std_logic_vector(7 downto 0) := x"03";
         CMP_OPERATION_LTU:          std_logic_vector(7 downto 0) := x"04";
-        CMP_OPERATION_LEU:          std_logic_vector(7 downto 0) := x"05"
+        CMP_OPERATION_LEU:          std_logic_vector(7 downto 0) := x"05";
+        MOV_OPERATION_L:            std_logic_vector(7 downto 0) := x"08";
+        MOV_OPERATION_H:            std_logic_vector(7 downto 0) := x"09"
         --ARITHMETIC_OPERATION_ADD: unsigned(7 downto 0) := x"00";
         --ARITHMETIC_OPERATION_AND: unsigned(7 downto 0) := x"01"
         );
@@ -53,6 +55,15 @@ begin
             temp_B := resize(unsigned(B),temp_B'length);
             temp_SA := resize(signed(A), temp_SA'length);
             temp_SB := resize(signed(B), temp_SB'length);
+            
+            
+            if operation = MOV_OPERATION_L then
+                W <= (A,B);
+            elsif operation = MOV_OPERATION_H then
+                W <= (B,A);
+            end if;
+            
+            
             -- COMPARATOR
             
             if cmp_alu = '1' then
