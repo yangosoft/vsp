@@ -87,7 +87,7 @@ BEGIN
             WrD <= '0';
             Clk <= '0';
             add_A <= std_logic_vector(to_unsigned(i,add_A'length)); 
-            add_B <= std_logic_vector(to_unsigned(10-i,add_B'length)); 
+            add_B <= std_logic_vector(to_unsigned(7-i,add_B'length)); 
 			wait for 1 us;
         end loop;
         add_D <= std_logic_vector(to_unsigned(0,add_D'length));
@@ -112,7 +112,7 @@ BEGIN
             WrD <= '0';
             Clk <= '0';
             add_A <= std_logic_vector(to_unsigned(i,add_A'length)); 
-            add_B <= std_logic_vector(to_unsigned(10-i,add_B'length)); 
+            add_B <= std_logic_vector(to_unsigned(7-i,add_B'length)); 
 			wait for 1 us;
         end loop;
 
