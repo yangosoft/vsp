@@ -28,8 +28,8 @@ entity ALU is
         
         operation : in std_logic_vector (7 downto 0);
         cmp_alu : in std_logic;
-        A : in std_logic_vector (7 downto 0);
-        B : in std_logic_vector (7 downto 0);
+        A : in std_logic_vector (15 downto 0);
+        B : in std_logic_vector (15 downto 0);
         W : out std_logic_vector (15 downto 0);
         z:     out STD_LOGIC;    
         ovf:   out STD_LOGIC
@@ -45,10 +45,10 @@ begin
         process(A,B, operation, cmp_alu)
             variable temp : unsigned(15 downto 0);
             variable op :   unsigned(7 downto 0);
-            variable temp_A : unsigned(7 downto 0); 
-            variable temp_B : unsigned(7 downto 0);
-            variable temp_SA : signed(7 downto 0); 
-            variable temp_SB : signed(7 downto 0);
+            variable temp_A : unsigned(15 downto 0); 
+            variable temp_B : unsigned(15 downto 0);
+            variable temp_SA : signed(15 downto 0); 
+            variable temp_SB : signed(15 downto 0);
         begin
             op := resize(unsigned(operation),8);
             temp_A := resize(unsigned(A),temp_A'length);
@@ -58,9 +58,11 @@ begin
             
             
             if operation = MOV_OPERATION_L then
-                W <= (A,B);
+            --     W <= (A,B);
+                W <= x"0000";
             elsif operation = MOV_OPERATION_H then
-                W <= (B,A);
+            --     W <= (B,A);
+                W <= x"0000";
             end if;
             
             
