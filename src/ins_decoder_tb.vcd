@@ -1,0 +1,47 @@
+$date
+  Thu Jan 27 18:52:47 2022
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module textio $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module numeric_std $end
+$upscope $end
+$scope module ins_decoder_tb $end
+$var reg 16 ! ins[15:0] $end
+$var reg 3 " add_a[2:0] $end
+$var reg 3 # add_b[2:0] $end
+$var reg 3 $ add_d[2:0] $end
+$var reg 1 % wrd $end
+$var reg 1 & e $end
+$var reg 16 ' a[15:0] $end
+$var reg 16 ( b[15:0] $end
+$var reg 3 ) f[2:0] $end
+$scope module uut $end
+$var reg 16 * ins[15:0] $end
+$var reg 8 + immed[7:0] $end
+$var reg 3 , add_a[2:0] $end
+$var reg 3 - add_b[2:0] $end
+$var reg 3 . add_d[2:0] $end
+$var reg 3 / f[2:0] $end
+$var reg 3 0 op[2:0] $end
+$var reg 1 1 e $end
+$var reg 1 2 rb_i $end
+$var reg 1 3 in_ld $end
+$var reg 1 4 inld_alu $end
+$var reg 1 5 wrd $end
+$var reg 1 6 wrio $end
+$var reg 1 7 wrmem $end
+$var reg 1 8 tknbr $end
+$var reg 8 9 dec_value[7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end

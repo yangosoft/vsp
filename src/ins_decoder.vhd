@@ -20,18 +20,27 @@ entity ins_decoder is
         WrD:        out STD_LOGIC;   
         WrIO:       out STD_LOGIC;   
         WrMem:      out STD_LOGIC;   
-        TknBr:      out STD_LOGIC;   
+        TknBr:      out STD_LOGIC
     );
     
 end entity;
 
 architecture arch of ins_decoder is
 
-    
+    signal dec_value : integer(7 downto 0) := (others => '0');
     
 begin
     
 
-  
+  add_B     <= INS(2 downto 0);
+  F         <= INS(5 downto 3);
+  add_A     <= INS(8 downto 6);
+  add_D     <= INS(11 downto 9);
+  OP        <= INS(14 downto 12);
+  e         <= INS(8);
+
+  --dec_value <= to_integer( INS(14 downto 12), dec_value'length) ;
+
+ 
 
 end architecture;
