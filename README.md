@@ -15,4 +15,5 @@ cd src
 gtkwave alu_tb.vcd
 gtkwave program_rom_tb.vcd
 gtkwave bank_register_tb.vcd
+gtkwave ins_decoder_tb.vcd
 ```
